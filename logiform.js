@@ -25,22 +25,22 @@
             },
             'operators': {
                 'logical': [
-                    {'expression': '$and', 'description': 'AND'},
-                    {'expression': '$or', 'description': 'OR'},
+                    {'expression': '$and', 'title': 'AND'},
+                    {'expression': '$or', 'title': 'OR'},
                     {'expression': '|'},
-                    {'expression': '$nor', 'description': 'NOR'}
+                    {'expression': '$nor', 'title': 'NOR'}
                 ],
                 'comparison': [
-                    {'expression': '$eq', 'description': '= Equal'},
-                    {'expression': '$ne', 'description': '!= Not equal'},
+                    {'expression': '$eq', 'title': '= Equal'},
+                    {'expression': '$ne', 'title': '!= Not equal'},
                     {'expression': '|'},
-                    {'expression': '$gt', 'description': '> Greater than'},
-                    {'expression': '$gte', 'description': '>= Greater than or equal'},
-                    {'expression': '$lt', 'description': '< Less than'},
-                    {'expression': '$lte', 'description': '<= Less than or equal'},
+                    {'expression': '$gt', 'title': '> Greater than'},
+                    {'expression': '$gte', 'title': '>= Greater than or equal'},
+                    {'expression': '$lt', 'title': '< Less than'},
+                    {'expression': '$lte', 'title': '<= Less than or equal'},
                     {'expression': '|'},
-                    {'expression': '$in', 'description': 'Match in array'},
-                    {'expression': '$nin', 'description': 'No match in array'}
+                    {'expression': '$in', 'title': 'Match in array'},
+                    {'expression': '$nin', 'title': 'No match in array'}
                 ]
             }
         };
@@ -70,7 +70,7 @@
                 if (item.expression == '|') {
                     logicalOperatorItems += divider;
                 } else {
-                    logicalOperatorItems += '<option value="'+item['expression']+'">'+item['description']+'</option>';
+                    logicalOperatorItems += '<option value="'+item['expression']+'">'+item['title']+'</option>';
                 }
             }
             var logicalOperatorContent = 
@@ -86,7 +86,7 @@
                 if (item.expression == '|') {
                     comparisonOperatorItems += divider
                 } else {
-                    comparisonOperatorItems += '<option value="'+item['expression']+'">'+item['description']+'</option>';
+                    comparisonOperatorItems += '<option value="'+item['expression']+'">'+item['title']+'</option>';
                 }
             }
             var comparisonOperatorContent = 
@@ -103,23 +103,23 @@
                 if (item.id == '|') {
                     fieldItems += divider
                 } else {
-                    fieldItems += '<option value="'+item['id']+'">'+item['description']+'</option>';
+                    fieldItems += '<option value="'+item['id']+'">'+item['title']+'</option>';
 
                     // TODO: Create a suitable mockup for each field type
                     if (item['type'] == 'array') {
-                        var candidates = '';
-                        for (var idxOption = 0, szOption = item['candidates'].length; idxOption < szOption; idxOption++) {
-                            var option = item['candidates'][idxOption];
+                        var Enum = '';
+                        for (var idxOption = 0, szOption = item['enum'].length; idxOption < szOption; idxOption++) {
+                            var option = item['enum'][idxOption];
                             if (option instanceof Array) {
-                                candidates += '<option value="'+option[0]+'">'+option[1]+'</option>';
+                                Enum += '<option value="'+option[0]+'">'+option[1]+'</option>';
                             } else {
-                                candidates += '<option value="'+option+'">'+option+'</option>';
+                                Enum += '<option value="'+option+'">'+option+'</option>';
                             }
                         }
                         fieldValueMockup[item['id']] = 
                             '<select class="lf-value selectpicker" data-width="' +
                             logiform.settings.width.value+'">' +
-                            candidates +
+                            Enum +
                             '</select>';
                     } else {
                         fieldValueMockup[item['id']] = 
