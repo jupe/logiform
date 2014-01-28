@@ -18,23 +18,23 @@ $(".logiform").logiform({
     'schema': [
         {
             'id': 'devicetype', 
-            'description': 'Device Type',
+            'title': 'Device Type',
             'type': 'array',
-            'candidates': [
+            'enum': [
                 'iPad',
                 'iPhone'
             ]
         },
         {
             'id': 'version',
-            'description': 'Application Version',
+            'title': 'Application Version',
             'type': 'string'
         },
         {
             'id': 'language',
-            'description': 'Language',
+            'title': 'Language',
             'type': 'array',
-            'candidates': [
+            'enum': [
                 ['ko', 'Korean'],
                 ['en', 'English'],
                 ['ja', 'Japanese']
@@ -42,9 +42,9 @@ $(".logiform").logiform({
         },
         {
             'id': 'country',
-            'description': 'Country',
+            'title': 'Country',
             'type': 'array',
-            'candidates': [
+            'enum': [
                 ['kr', 'Korea'],
                 ['us', 'United States'],
                 ['jp', 'Japan']
@@ -52,7 +52,6 @@ $(".logiform").logiform({
         }
     ]
 });
-//$('.selectpicker').selectpicker();
 </script>
 </body>
 </html>
