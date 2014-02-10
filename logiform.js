@@ -4,7 +4,7 @@
         var defaults = {
             'target': null,
             'onUpdate': null,
-
+            'readonly': false,
             'prettify': false,
             'liveUpdate': false,
             'hideOriginal': true,
@@ -74,7 +74,7 @@
                 }
             }
             var logicalOperatorContent = 
-                '<select class="lf-logicaloperator selectpicker" data-width="'+logiform.settings.width.logicalOperator+'">' +
+                '<select '+(logiform.settings.readonly?'disabled ':'')+'class="lf-logicaloperator selectpicker" data-width="'+logiform.settings.width.logicalOperator+'">' +
                 logicalOperatorItems +
                 '</select>';
 
@@ -90,7 +90,7 @@
                 }
             }
             var comparisonOperatorContent = 
-                '<select class="lf-comparisonoperator selectpicker" data-width="'+logiform.settings.width.comparisonOperator+'">' +
+                '<select '+(logiform.settings.readonly?'disabled ':'')+'class="lf-comparisonoperator selectpicker" data-width="'+logiform.settings.width.comparisonOperator+'">' +
                 comparisonOperatorItems +
                 '</select>';
 
@@ -117,13 +117,13 @@
                             }
                         }
                         fieldValueMockup[item['id']] = 
-                            '<select class="lf-value selectpicker" data-width="' +
+                            '<select '+(logiform.settings.readonly?'disabled ':'')+'class="lf-value selectpicker" data-width="' +
                             logiform.settings.width.value+'">' +
                             Enum +
                             '</select>';
                     } else {
                         fieldValueMockup[item['id']] = 
-                            '<input class="lf-value form-control" type="text" style="width:' +
+                            '<input '+(logiform.settings.readonly?'readonly ':'')+'class="lf-value form-control" type="text" style="width:' +
                             logiform.settings.width.value+'">';
                     }
 
@@ -133,7 +133,7 @@
                 }
             }
             var fieldContent = 
-                '<select class="lf-field selectpicker" data-width="'+logiform.settings.width.field+'">' +
+                '<select '+(logiform.settings.readonly?'disabled ':'')+'class="lf-field selectpicker" data-width="'+logiform.settings.width.field+'">' +
                 fieldItems +
                 '</select>';
 
@@ -141,9 +141,9 @@
             condition_mockup = 
                 '<div class="lf-condition">' +
                     '<div class="btn-group">' +
-                        '<button type="button" class="btn btn-warning lf-button-remove-condition">' +
+                        (logiform.settings.readonly?'':('<button type="button" class="btn btn-warning lf-button-remove-condition">' +
                         logiform.settings.text['remove-condition'] +
-                        '</button>' +
+                        '</button>')) +
                         fieldContent +
                         comparisonOperatorContent + 
                     '</div>' +
@@ -156,18 +156,20 @@
             condition_group_mockup = 
                 '<div class="lf-condition-group">' +
                     logicalOperatorContent +
-                    '<button type="button" class="btn btn-danger pull-right lf-button-remove-condition-group">' +
+                    (logiform.settings.readonly?'':(
+                   '<button '+(logiform.settings.readonly?'disabled ':'')+'type="button" class="btn btn-danger pull-right lf-button-remove-condition-group">' +
                     logiform.settings.text['remove-condition-group'] +
-                    '</button>' +
+                    '</button>')) +
                     '<div class="lf-condition-list">' +
                     '</div>' +
                     '<div class="lf-buttons btn-group">' +
-                        '<button type="button" class="btn btn-primary lf-button-add-condition">' +
+                         (logiform.settings.readonly?'':(
+                        '<button '+(logiform.settings.readonly?'disabled ':'')+'type="button" class="btn btn-primary lf-button-add-condition">' +
                         logiform.settings.text['add-condition'] +
-                        '</button>' +
-                        '<button type="button" class="btn btn-default lf-button-add-condition-group">' +
+                        '</button>') +
+                        '<button '+(logiform.settings.readonly?'disabled ':'')+'type="button" class="btn btn-default lf-button-add-condition-group">' +
                         logiform.settings.text['add-condition-group'] +
-                        '</button>' +
+                        '</button>') +
                     '</div>' +
                 '</div>';
 
